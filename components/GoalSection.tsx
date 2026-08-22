@@ -1,5 +1,7 @@
 import type { GoalSectionData } from "@/lib/content";
 import GoalCard from "./GoalCard";
+import Reveal from "./Reveal";
+import Parallax from "./Parallax";
 
 type Props = {
   section: GoalSectionData;
@@ -20,22 +22,35 @@ export default function GoalSection({ section, index, reversed }: Props) {
           }`}
         >
           <div className="relative">
-            <span className="ghost-number absolute -top-16 -left-4 text-[180px] md:-top-20 md:-left-8 md:text-[260px]">
-              {num}
-            </span>
-            <div className="relative">
-              <span className="gold-rule text-xs uppercase tracking-overline text-gold">
-                {section.eyebrow}
+            {/* ghost number floats with parallax */}
+            <Parallax
+              speed={0.18}
+              className="pointer-events-none absolute -top-16 -left-4 md:-top-20 md:-left-8"
+            >
+              <span className="ghost-number block text-[180px] md:text-[260px]">
+                {num}
               </span>
-              <h2 className="mt-4 whitespace-pre-line font-display text-4xl leading-[1.05] text-white md:text-5xl lg:text-6xl">
-                {section.headline}
-              </h2>
+            </Parallax>
+
+            <div className="relative">
+              <Reveal className="block">
+                <span className="gold-rule text-xs uppercase tracking-overline text-gold">
+                  {section.eyebrow}
+                </span>
+              </Reveal>
+              <Reveal delay={120} className="block">
+                <h2 className="mt-4 whitespace-pre-line font-display text-4xl leading-[1.05] text-white md:text-5xl lg:text-6xl">
+                  {section.headline}
+                </h2>
+              </Reveal>
             </div>
           </div>
 
-          <p className="max-w-md text-sm font-light leading-relaxed text-white/70 md:text-base">
-            {section.intro}
-          </p>
+          <Reveal delay={220} className="max-w-md">
+            <p className="text-sm font-light leading-relaxed text-white/70 md:text-base">
+              {section.intro}
+            </p>
+          </Reveal>
         </div>
 
         {/* Items */}
