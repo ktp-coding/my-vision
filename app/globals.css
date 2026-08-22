@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --night: #0d1b2a;
+  --gold: #e0b872;
+}
+
+html,
+body {
+  background-color: var(--night);
+  color: #eef2f6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.ghost-number {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.06);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 27, 42, 0.55) 0%,
+    rgba(13, 27, 42, 0.2) 35%,
+    rgba(13, 27, 42, 0.6) 78%,
+    rgba(13, 27, 42, 1) 100%
+  );
+}
+
+.gold-rule::before {
+  content: "";
+  display: inline-block;
+  width: 44px;
+  height: 1px;
+  background-color: var(--gold);
+  vertical-align: middle;
+  margin-right: 14px;
+  margin-bottom: 4px;
+}
+
+.link-arrow::after {
+  content: "→";
+  margin-left: 10px;
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+
+.link-arrow:hover::after {
+  transform: translateX(4px);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--night);
+}
