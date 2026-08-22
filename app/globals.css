@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* deep navy-teal ground */
+  --ink: #0D2231;
+  --ink-2: #10283A;
+  --panel: #133147;
+  --panel-2: #163953;
+  --hairline: #1E3A50;
+  --hairline-soft: #163044;
+
+  /* warm cream text */
+  --text: #F5F1E4;
+  --text-dim: #9E9784;
+  --text-dimmer: #4E4A3F;
+  --text-ghost: #1A3247;
+
+  /* mustard gold accent */
+  --brass: #E9B44C;
+  --brass-hi: #F5C766;
+  --brass-soft: rgba(233, 180, 76, 0.14);
+
+  /* semantic */
+  --market: #7FA98B;
+  --alert: #C87A6A;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-sans), 'IBM Plex Sans Thai', system-ui, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+body {
+  min-height: 100vh;
+  background: var(--ink);
+}
+
+::selection {
+  background: var(--brass-soft);
+  color: var(--brass-hi);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* MNTN-style label with gold underline */
+.gold-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.gold-label::before {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: var(--brass);
+  display: inline-block;
+}
+
+/* the ghost number pattern */
+.ghost-num {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(120px, 18vw, 260px);
+  line-height: 0.85;
+  color: var(--text-ghost);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* read more link */
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.read-more::after {
+  content: "→";
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.read-more:hover { color: var(--brass-hi); }
+.read-more:hover::after { transform: translateX(6px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.8s ease-out both; }
+
+@keyframes slowZoom {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+.slow-zoom { animation: slowZoom 12s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
